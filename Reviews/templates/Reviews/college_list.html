@@ -1,0 +1,26 @@
+<html>
+<body>
+
+{% extends 'Reviews/base.html' %}
+
+{% block title %}
+<h2><i>College List</i><h2>
+{% endblock %}
+
+{% block content %}
+{% if college_list%}
+<div class="row">
+	{% for college in college_list %}
+	<div>
+		<h3><a href="{% url 'Reviews:college_detail' college.id%}">{{ college.name }}</a></h3>
+		<h4> {{ college.review_set.count }} Reviews    Rated: {{ college.avg_rating | floatformat }} </h4>
+	</div>
+	{% endfor %}
+</div>
+{% else %}
+<p>No college registered </p>
+{% endif %}
+{% endblock %}
+
+</body>
+</html>

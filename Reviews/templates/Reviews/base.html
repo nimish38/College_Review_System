@@ -1,0 +1,22 @@
+<html>
+<body>
+<div>
+	<nav>
+		<div>
+			<h1><b><i><a href="{% url 'Reviews:review_list' %}">College Review System </a></i></b></h1>
+		</div>
+		<div id="navbar">
+			<ul>
+			<li><a href="{% url 'Reviews:review_list' %}">Home</a></li>						
+			<li><a href="{% url 'Reviews:college_list' %}">College List</a></li>
+			<li><a href="{% url 'Reviews:logout_user' %}">LogOut</a></li> 
+			</ul>
+		</div>
+	</nav>
+	
+	<br><br>
+	<h2>{% block title %}(no title){% endblock %}</h2>
+	{% block content %}(no cocntent){% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+<body>
+{% extends 'Reviews/base.html' %}
+
+{% block title %}
+<i><h1>{{ college.name }}</h1></i>
+<h3>{{ college.review_set.count }} reviews ({{college.avg_rating | floatformat}} rated)</h3>
+{% endblock %}
+
+{% block content %}
+{% if college.review_set.all %}
+<div>
+	{% for review in college.review_set.all %}
+	<div>
+		<em>{{ review.description }}</em>
+		<h5>Rated {{review.rating }}/5 by user {{ review.user_name }}</h5>
+		<h4><a href="{% url 'Reviews:review_detail' review.id%}">
+		Read more..
+		</a></h4>
+	</div>
+	{% endfor %}
+</div>
+{% else %}
+<h4>No Reviews for this college yet</h4>
+{% endif %}
+
+<br><br>
+
+<h2>Add your review about this college <h2>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'Reviews:add_review' college.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Add" />
+</form>
+{% endblock %}
+
+</body>
+</html>
