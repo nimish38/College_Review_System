@@ -19,13 +19,9 @@ from django.urls import path,include,re_path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-	path('Reviews/',include('Reviews.urls', namespace='Reviews')),
+    path('Reviews/',include('Reviews.urls', namespace='Reviews')),
 
 ]
 
-'''
-urlpatterns = [
-    re_path(r'^reviews/', include('Reviews.urls', namespace="Reviews")),
-    re_path(r'^admin/', include(admin.site.urls)),
-'''
+
 

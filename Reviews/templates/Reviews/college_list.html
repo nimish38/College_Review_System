@@ -13,7 +13,10 @@
 	{% for college in college_list %}
 	<div>
 		<h3><a href="{% url 'Reviews:college_detail' college.id%}">{{ college.name }}</a></h3>
-		<h4> {{ college.review_set.count }} Reviews    Rated: {{ college.avg_rating | floatformat }} </h4>
+		<h4> {{ college.review_set.count }} Reviews  
+			{% if college.review_set.count > 0	%}
+		Rated: {{ college.avg_rating | floatformat }}
+			{% endif %}</h4>
 	</div>
 	{% endfor %}
 </div>

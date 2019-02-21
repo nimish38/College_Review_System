@@ -4,7 +4,10 @@
 
 {% block title %}
 <i><h1>{{ college.name }}</h1></i>
-<h3>{{ college.review_set.count }} reviews ({{college.avg_rating | floatformat}} rated)</h3>
+<h3>{{ college.review_set.count }} reviews 
+	{% if college.review_set.count > 0	%}
+		({{college.avg_rating | floatformat}} rated)</h3>
+	{% endif %}
 {% endblock %}
 
 {% block content %}

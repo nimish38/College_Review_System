@@ -1,0 +1,44 @@
+<html>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+    $("#autocomplete-college").on('keyup', function(){
+        var value = $(this).val();
+        $.ajax({
+            url: "{% url 'Reviews:autocomplete_college' %}",
+            data: {
+              'search': value
+            },
+            dataType: 'json',
+            success: function (data) {
+            	console.log(data.list)
+                list = data.list;
+                $("#autocomplete-college").autocomplete({
+                source: list,
+                minLength: 1
+                });
+            }
+        });
+    });
+  });
+
+    //   keeps same width as box
+      jQuery.ui.autocomplete.prototype._resizeMenu = function () {
+          var ul = this.menu.element;
+          ul.outerWidth(this.element.outerWidth());
+        }
+</script>
+<body>
+
+		<div>
+			<h1><b><i>College Review System </i></b></h1>
+		</div>
+	<br><br>
+	<div class="ui-widget">
+  <label for="Colleges">College: </label>
+  <input type ="text" id="autocomplete-college">
+</div>
+</body>
+</html>

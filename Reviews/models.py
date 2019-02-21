@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import Permission, User
+
 
 # Create your models here.
 
@@ -17,12 +19,8 @@ class College(models.Model):
 
 
 class Review(models.Model):
-    rating_choices=(
-        (1,'1'),(2,'2'),(3,'3'),(4,'4'),(5,'5'),
-    )
-
     college=models.ForeignKey(College,on_delete=models.CASCADE)
     pub_date=models.DateTimeField('Review Publishing Date')
     user_name=models.CharField(max_length=100)
     description=models.CharField(max_length=200)
-    rating=models.IntegerField(choices=rating_choices)
+    rating=models.FloatField()

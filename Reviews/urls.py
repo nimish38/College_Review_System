@@ -5,7 +5,8 @@ from . import views
 app_name='Reviews'
 urlpatterns = [
 
-    path('', views.review_list, name='review_list'),
+	path('get_names', views.autocomplete_college, name='autocomplete_college'),
+	path('', views.review_list, name='review_list'),
 	path('login_user/',views.login_user,name='login_user'),
 	path('create_new_user/',views.create_new_user,name='create_new_user'),
 	path('logout_user/',views.logout_user,name='logout_user'),
