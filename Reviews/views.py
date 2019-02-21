@@ -2,11 +2,32 @@ from django.contrib.auth import authenticate,logout,login
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Review,College
 from django.urls import reverse
-from django.http import HttpResponseRedirect,HttpResponse
+from django.http import HttpResponseRedirect,JsonResponse
 from .forms import ReviewForm,UserForm
 import datetime
-from django.http import JsonResponse
 from textblob import TextBlob
+
+
+def add_college(request):
+	college_name=request.POST['clg']
+	col = College()
+	col.name = college_name
+	col.save()
+	form = ReviewForm()
+	return render(request, 'Reviews/college_detail.html', {'college': col, 'form': form})
+
+
+def searched(request):
+	if request.method == "POST":
+		clg_name = request.POST['autocomplete-college']
+		if College.objects.filter(name=clg_name).exists():
+			clge = College.objects.filter(name=clg_name)
+			clg=clge[0]
+			form = ReviewForm()
+			return render(request, 'Reviews/college_detail.html', {'college': clg, 'form': form})
+		else:
+			return render(request, 'Reviews/add_clg.html', {'name': clg_name})
+	return render(request, 'Reviews/Search.html')
 
 
 def autocomplete_college(request):
@@ -21,6 +42,7 @@ def autocomplete_college(request):
 		}
 		return JsonResponse(data)
 	return render(request,'Reviews/Search.html',{})
+
 
 def review_list(request):
 	if(request.user.is_authenticated==False):

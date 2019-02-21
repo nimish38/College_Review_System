@@ -37,8 +37,14 @@
 		</div>
 	<br><br>
 	<div class="ui-widget">
-  <label for="Colleges">College: </label>
-  <input type ="text" id="autocomplete-college">
-</div>
+	<form action="{% url 'Reviews:searched' %}" method="post">
+		{% csrf_token %}
+  <label>College: </label>
+  <input type ="text" id="autocomplete-college" name="autocomplete-college">
+	<br><br>	<button type="submit">Search</button>
+	</form>
+
+
+	</div>
 </body>
 </html>

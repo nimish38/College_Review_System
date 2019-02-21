@@ -1,0 +1,16 @@
+<html>
+<body>
+
+<h2>
+Request admin to add {{ name }} to college database??
+</h2>
+<br><br>
+<form action="{% url 'Reviews:add_college'%}" method="post">
+    {% csrf_token %}
+    <input type="text" name="clg" value="{{ name }}">
+    <br><br>
+    <button type="submit">Request</button>
+</form>
+
+</body>
+</html>
