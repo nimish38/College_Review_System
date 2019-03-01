@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm,PasswordInput, Textarea ,CharField
-from Reviews.models import Review
+from Reviews.models import Review,AnsweredQueries
 from django.contrib.auth.models import User
 #from College.models import College
 
@@ -23,4 +23,3 @@ class UserForm(ModelForm):
 		widgets={
 			'password':forms.PasswordInput()
 		}
-

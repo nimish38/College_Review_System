@@ -1,11 +1,37 @@
 from django.contrib.auth import authenticate,logout,login
 from django.shortcuts import render,get_object_or_404,redirect
-from .models import Review,College
+from .models import Review,College,PendingQuery,AnsweredQueries
 from django.urls import reverse
 from django.http import HttpResponseRedirect,JsonResponse
 from .forms import ReviewForm,UserForm
 import datetime
 from textblob import TextBlob
+
+
+def answer_query(request):
+	qsn=request.POST['qstn']
+	col=request.POST['colg']
+	context={
+		'qsn': qsn,
+		'col': col,
+	}
+	return render(request,'Reviews/answer.html',context)
+
+
+def submit_query(request):
+	qsn = request.POST['qstn']
+	col = request.POST['colg']
+	ans = request.POST['ans']
+	aq=AnsweredQueries()
+	aq.qsn=qsn
+	aq.ans=ans
+	pq = PendingQuery.objects.filter(qsn=qsn).delete()
+	form=ReviewForm()
+	clge = College.objects.filter(name=col)
+	clg = clge[0]
+	aq.college=clg
+	aq.save()
+	return render(request, 'Reviews/college_detail.html', {'college': clg, 'form': form})
 
 
 def add_college(request):
@@ -15,6 +41,21 @@ def add_college(request):
 	col.save()
 	form = ReviewForm()
 	return render(request, 'Reviews/college_detail.html', {'college': col, 'form': form})
+
+
+def req_query(request):
+	qry = request.POST['qry']
+	college_nm=request.POST['col']
+	clge = College.objects.filter(name=college_nm)
+	clg = clge[0]
+
+	pq = PendingQuery()
+	pq.college = clg
+	pq.qsn = qry
+	pq.save()
+
+	form = ReviewForm()
+	return render(request, 'Reviews/college_detail.html', {'college': clg, 'form': form})
 
 
 def searched(request):
@@ -74,10 +115,8 @@ def add_review(request,college_id):
 	college = get_object_or_404(College, pk=college_id)
 	form = ReviewForm(request.POST)
 	if form.is_valid():
-		# rating = form.cleaned_data['rating']
 		description = form.cleaned_data['description']
 		anonymous=form.cleaned_data['anonymous']
-		print(anonymous)
 		val=TextBlob(description)
 		rate=val.sentiment.polarity
 

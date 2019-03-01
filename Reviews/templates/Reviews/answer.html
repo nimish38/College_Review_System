@@ -1,0 +1,23 @@
+<html>
+<body>
+
+{% extends 'Reviews/base.html' %}
+
+{% block title %}
+    {{ col }}
+    <br>
+<h4>{{ qsn }}</h4>
+{% endblock %}
+
+{% block content %}
+<form  action="{% url 'Reviews:submit_query' %}" method="post">
+	{% csrf_token %}
+    <input type="hidden" value="{{ qsn }}" name="qstn">
+	<input type="hidden" value="{{ col }}" name="colg">
+    <h4>Answer: </h4>
+    <textarea name="ans"></textarea>
+<button type="submit">Submit</button>
+</form>
+{% endblock %}
+</body>
+</html>

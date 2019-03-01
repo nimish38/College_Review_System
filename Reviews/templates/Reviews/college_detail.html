@@ -4,7 +4,18 @@
 
 {% block title %}
 <i><h1>{{ college.name }}</h1></i>
-<h3>{{ college.review_set.count }} reviews 
+<hr><br>
+<h3>Have a query?Clear them!! </h3>
+<br>
+<form action="{% url 'Reviews:req_query'%}" method="post">
+    {% csrf_token %}
+	<textarea name="qry"></textarea><input type="hidden" name="col" value="{{ college.name }}">
+    <br>
+    <button type="submit">Request</button>
+</form>
+<br>
+<hr>
+<h3>{{ college.review_set.count }} reviews
 	{% if college.review_set.count > 0	%}
 		({{college.avg_rating | floatformat}} rated)</h3>
 	{% endif %}
@@ -26,9 +37,40 @@
 {% else %}
 <h4>No Reviews for this college yet</h4>
 {% endif %}
+<br>
+<hr>
+
+{%  if college.pendingquery_set.all %}
+<h3>Pending Queries....</h3><br><br>
+{% for qry in college.pendingquery_set.all %}
+<h4> {{ qry.qsn }} </h4>
+<form action="{% url 'Reviews:answer_query'%}" method="post">
+	{% csrf_token %}
+	<input type="hidden" value="{{ qry.qsn }}" name="qstn">
+	<input type="hidden" value="{{ college.name }}" name="colg">
+	<button type="submit">Answer</button>
+</form>
+		<br>
+{% endfor %}
+{% else %}
+<h4>No Pending Queries for this college yet</h4>
+{% endif %}
 
 <br><br>
+<hr>
+{%  if college.answeredqueries_set.all %}
+<h3>Answered Queries....</h3><br><br>
+{% for qry in college.answeredqueries_set.all %}
+<h4> {{ qry.qsn }} </h4>
+<h4> {{ qry.ans }} </h4>
+		<br>
+{% endfor %}
+{% else %}
+<h4>No Answered Queries for this college yet</h4>
+{% endif %}
 
+<br>
+<hr>
 <h2>Add your review about this college <h2>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 

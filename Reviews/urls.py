@@ -14,7 +14,11 @@ urlpatterns = [
 	path('college/<int:college_id>/add_review/', views.add_review, name='add_review'),
 	path('college/<int:college_id>/', views.college_detail, name='college_detail'),
 	path('searched/', views.searched, name='searched'),
-	path('get_names/', views.autocomplete_college, name='autocomplete_college'),
+	path('search/', views.autocomplete_college, name='autocomplete_college'),
 	path('add_college/', views.add_college, name='add_college'),
+	path('req_query/', views.req_query, name='req_query'),
+	path('answer_query/', views.answer_query, name='answer_query'),
+	path('submit_query/', views.submit_query, name='submit_query'),
+
 ]
 
