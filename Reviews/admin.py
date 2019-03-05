@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import College, Review, PendingQuery, AnsweredQueries
+from .models import College, Review, PendingQuery, AnsweredQueries, StudentUser, IndustryUser
 
 
 class ReviewAdmin(admin.ModelAdmin):
@@ -14,3 +14,5 @@ admin.site.register(College)
 admin.site.register(Review, ReviewAdmin)
 admin.site.register(PendingQuery)
 admin.site.register(AnsweredQueries)
+admin.site.register(StudentUser)
+admin.site.register(IndustryUser)

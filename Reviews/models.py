@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 # Create your models here.
 
 
@@ -34,3 +36,20 @@ class AnsweredQueries(models.Model):
 	college = models.ForeignKey(College,on_delete=models.CASCADE)
 	qsn = models.CharField(max_length=10000)
 	ans = models.CharField(max_length=10000)
+
+
+type_choices = (
+    ('Active Student', 'Active Student'),
+    ('Alumni', 'Alumni'),
+)
+
+
+class StudentUser(models.Model):
+	user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
+	category = models.CharField(max_length=20, choices=type_choices,default='Other')
+	college = models.ForeignKey(College,on_delete=models.CASCADE)
+
+
+class IndustryUser(models.Model):
+	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+	company = models.CharField(max_length=1000)

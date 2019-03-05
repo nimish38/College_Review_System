@@ -7,10 +7,19 @@ Sign Up
 <br><br>
 <form class="form-group" role="form" action="" method="post">
 	{% csrf_token %}
-	{{ form.as_p }}
-<button type="submit">Signup!</button>
+	<h3><i>For Students</i></h3>
+	{{ Uform.as_p }}
+	{{ Sform.as_p }}
+	<button type="submit">Signup!</button>
 </form>	
-	
+
+<br><hr><br>
+<form class="form-group" role="form" action="" method="post">
+	{% csrf_token %}
+	<h3><i>For Industry Experts</i></h3>
+	{{ Uform.as_p }}
+	{{ Iform.as_p }}
+	<button type="submit">Signup!</button>
 <br>
 <h3>Already have an account?? </h3> 
 <form>

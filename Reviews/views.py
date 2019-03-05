@@ -1,9 +1,9 @@
 from django.contrib.auth import authenticate,logout,login
 from django.shortcuts import render,get_object_or_404,redirect
-from .models import Review,College,PendingQuery,AnsweredQueries
+from .models import Review,College,PendingQuery,AnsweredQueries, StudentUser, IndustryUser
 from django.urls import reverse
 from django.http import HttpResponseRedirect,JsonResponse
-from .forms import ReviewForm,UserForm
+from .forms import ReviewForm,StudUserForm, UserForm, IndUserForm
 import datetime
 from textblob import TextBlob
 
@@ -157,27 +157,45 @@ def login_user(request):
 
 
 def create_new_user(request):
-	form=UserForm(data=request.POST)	
-	if form.is_valid():
-		user=form.save(commit=False)
-		username=form.cleaned_data['username']
-		password=form.cleaned_data['password']
-		college_name=form.cleaned_data['college_name']
-		if(College.objects.filter(name=college_name).exists()==False):
-			col=College()
-			col.name=college_name
-			col.save()
-		user.set_password(password)
-		user.save()
-		login(request,user)
-		return redirect('Reviews:review_list')
+	Uform = UserForm(data=request.POST)
+	Sform = StudUserForm(data=request.POST)
+	Iform = IndUserForm(data=request.POST)
+	if request.method == "POST":
+		if Uform.is_valid() and Sform.is_valid():
+			user = Uform.save(commit=False)
+			password = Uform.cleaned_data['password']
+			user.set_password(password)
+			user.save()
+			Sform.save(commit=False)
+			stud=StudentUser()
+			stud.user=user
+			stud.college=Sform.cleaned_data['college']
+			stud.category=Sform.cleaned_data['category']
+			stud.save()
+			login(request, user)
+			return redirect('Reviews:review_list')
+
+		if Uform.is_valid() and Iform.is_valid():
+			user = Uform.save(commit=False)
+			password = Uform.cleaned_data['password']
+			user.set_password(password)
+			user.save()
+			Iform.save(commit=False)
+			ind=IndustryUser()
+			ind.user=user
+			ind.company=Iform.cleaned_data['company']
+			ind.save()
+			login(request, user)
+			return redirect('Reviews:review_list')
 	context = {
-		"form":form,
+		"Uform": Uform,
+		"Sform": Sform,
+		"Iform": Iform,
 	}
 	return render(request, 'Reviews/create_new_user.html',context)
 
 
 def logout_user(request):
 	logout(request)
-	form=UserForm(request.POST or None)
-	return render(request, 'Reviews/login.html',{"form":form,})
+	form=StudUserForm(request.POST or None)
+	return render(request, 'Reviews/login.html', {"form": form})
