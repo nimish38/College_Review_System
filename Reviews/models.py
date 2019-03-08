@@ -15,8 +15,41 @@ class College(models.Model):
 		avg/= len(tot)
 		return avg
 
-	def __unicode__(self):
+	def avg_p_rating(self):
+		tot = list(map(lambda x: x.placement_rate, self.review_set.all()))
+		avg = 0
+		for i in range(len(tot)):
+			avg += int(tot[i])
+		avg /= len(tot)
+		return avg
+
+	def avg_a_rating(self):
+		tot = list(map(lambda x: x.academic_rate, self.review_set.all()))
+		avg = 0
+		for i in range(len(tot)):
+			avg += int(tot[i])
+		avg /= len(tot)
+		return avg
+
+	def avg_i_rating(self):
+		tot = list(map(lambda x: x.infra_rate, self.review_set.all()))
+		avg = 0
+		for i in range(len(tot)):
+			avg += int(tot[i])
+		avg /= len(tot)
+		return avg
+
+	def __str__(self):
 		return self.name
+
+
+feedback = (
+	(1, 'Poor'),
+	(2, 'Satisfactory'),
+	(3, 'Average'),
+	(4, 'Good'),
+	(5, 'Excellent'),
+)
 
 
 class Review(models.Model):
@@ -24,6 +57,9 @@ class Review(models.Model):
 	pub_date = models.DateTimeField('Review Publishing Date')
 	user_name = models.CharField(max_length=100)
 	description = models.CharField(max_length=200)
+	academic_rate = models.IntegerField(choices=feedback, default='Other')
+	placement_rate = models.IntegerField(choices=feedback, default='Other')
+	infra_rate = models.IntegerField(choices=feedback, default='Other')
 	rating = models.FloatField()
 
 
@@ -48,6 +84,9 @@ class StudentUser(models.Model):
 	user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
 	category = models.CharField(max_length=20, choices=type_choices,default='Other')
 	college = models.ForeignKey(College,on_delete=models.CASCADE)
+
+	def __str__(self):
+		return self.user.username
 
 
 class IndustryUser(models.Model):

@@ -17,7 +17,14 @@
 <hr>
 <h3>{{ college.review_set.count }} reviews
 	{% if college.review_set.count > 0	%}
-		({{college.avg_rating | floatformat}} rated)</h3>
+		(Total = {{college.avg_rating | floatformat}} rated)
+		<br>
+		(Placement = {{college.avg_p_rating | floatformat}})
+		<br>
+		(Academics = {{college.avg_a_rating | floatformat}})
+		<br>
+		(Placement = {{college.avg_i_rating | floatformat}})
+	</h3>
 	{% endif %}
 {% endblock %}
 

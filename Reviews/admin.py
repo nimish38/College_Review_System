@@ -10,9 +10,15 @@ class ReviewAdmin(admin.ModelAdmin):
 	search_fields=['college']
 
 
+class StudAdmin(admin.ModelAdmin):
+	model=StudentUser
+	list_display = ('user','college','category')
+	list_filter = ['college']
+
+
 admin.site.register(College)
 admin.site.register(Review, ReviewAdmin)
 admin.site.register(PendingQuery)
 admin.site.register(AnsweredQueries)
-admin.site.register(StudentUser)
+admin.site.register(StudentUser, StudAdmin)
 admin.site.register(IndustryUser)

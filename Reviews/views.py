@@ -86,7 +86,7 @@ def autocomplete_college(request):
 
 
 def review_list(request):
-	if(request.user.is_authenticated==False):
+	if request.user.is_authenticated==False:
 		return render(request, 'Reviews/login.html')
 	else:	
 		latest_review_list=Review.objects.order_by('-pub_date')[:9]
@@ -112,26 +112,34 @@ def college_detail(request,college_id):
 
 
 def add_review(request,college_id):
+	#vals= {'Poor': 1, 'Satisfactory': 2, 'Average': 3, 'Good': 4, 'Excellent': 5}
 	college = get_object_or_404(College, pk=college_id)
 	form = ReviewForm(request.POST)
 	if form.is_valid():
 		description = form.cleaned_data['description']
 		anonymous=form.cleaned_data['anonymous']
+		acad = int(form.cleaned_data['academic_rate'])
+		place = int(form.cleaned_data['placement_rate'])
+		infra = int(form.cleaned_data['infra_rate'])
 		val=TextBlob(description)
 		rate=val.sentiment.polarity
 
 		# normalization
 
-		rating=((rate+1)*(5))/2
-		print(rate,rating)
-		rating=round(rating,1)
+		rating = ((rate+1)*5)/2
+		print(rate, rating)
+		tot_rate = (acad + place + infra + rating)/4
+		rating = round(tot_rate, 1)
 
 		review = Review()
 		review.college = college
-		if(anonymous):
+		if anonymous:
 			review.user_name = "Anonymous"
 		else:
 			review.user_name = request.user.username
+		review.academic_rate = acad
+		review.placement_rate = place
+		review.infra_rate = infra
 		review.rating = rating
 		review.description = description
 		review.pub_date = datetime.datetime.now()

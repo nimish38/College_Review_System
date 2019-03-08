@@ -2,17 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03cd47a7-959b-45ed-bef8-510f69c95e88" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Reviews/migrations/0003_auto_20180926_1719.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Reviews/migrations/0004_auto_20180926_1727.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Reviews/migrations/0005_pendingquery.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Reviews/migrations/0006_answeredqueries.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/Reviews/admin.py" afterPath="$PROJECT_DIR$/Reviews/admin.py" />
-      <change beforePath="$PROJECT_DIR$/Reviews/apps.py" afterPath="$PROJECT_DIR$/Reviews/apps.py" />
       <change beforePath="$PROJECT_DIR$/Reviews/forms.py" afterPath="$PROJECT_DIR$/Reviews/forms.py" />
-      <change beforePath="$PROJECT_DIR$/Reviews/migrations/0001_initial.py" afterPath="" />
       <change beforePath="$PROJECT_DIR$/Reviews/models.py" afterPath="$PROJECT_DIR$/Reviews/models.py" />
-      <change beforePath="$PROJECT_DIR$/Reviews/templates/Reviews/create_new_user.html" afterPath="$PROJECT_DIR$/Reviews/templates/Reviews/create_new_user.html" />
+      <change beforePath="$PROJECT_DIR$/Reviews/templates/Reviews/college_detail.html" afterPath="$PROJECT_DIR$/Reviews/templates/Reviews/college_detail.html" />
+      <change beforePath="$PROJECT_DIR$/Reviews/templates/Reviews/review_detail.html" afterPath="$PROJECT_DIR$/Reviews/templates/Reviews/review_detail.html" />
       <change beforePath="$PROJECT_DIR$/Reviews/views.py" afterPath="$PROJECT_DIR$/Reviews/views.py" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
     </list>
@@ -25,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Reviews/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1175">
-              <caret line="47" column="70" lean-forward="true" selection-start-line="47" selection-start-column="70" selection-end-line="47" selection-end-column="70" />
+            <state relative-caret-position="224">
+              <caret line="18" column="74" lean-forward="false" selection-start-line="18" selection-start-column="74" selection-end-line="18" selection-end-column="74" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -40,8 +35,8 @@
       <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Reviews/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="175">
+              <caret line="7" column="73" lean-forward="false" selection-start-line="7" selection-start-column="73" selection-end-line="7" selection-end-column="73" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -49,11 +44,31 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="college_detail.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Reviews/templates/Reviews/college_detail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="625">
+              <caret line="25" column="36" lean-forward="false" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Reviews/templates/Reviews/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="18" column="29" lean-forward="false" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Reviews/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4850">
-              <caret line="194" column="23" lean-forward="true" selection-start-line="194" selection-start-column="23" selection-end-line="194" selection-end-column="23" />
+            <state relative-caret-position="300">
+              <caret line="122" column="52" lean-forward="false" selection-start-line="122" selection-start-column="52" selection-end-line="122" selection-end-column="52" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
               </folding>
@@ -61,21 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="create_new_user.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Reviews/templates/Reviews/create_new_user.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="19" column="17" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Reviews/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="750">
-              <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+            <state relative-caret-position="250">
+              <caret line="10" column="77" lean-forward="false" selection-start-line="10" selection-start-column="77" selection-end-line="10" selection-end-column="77" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -100,14 +105,15 @@
         <option value="$PROJECT_DIR$/Reviews/templates/Reviews/base.html" />
         <option value="$PROJECT_DIR$/Reviews/templates/Reviews/answer.html" />
         <option value="$PROJECT_DIR$/Reviews/urls.py" />
-        <option value="$PROJECT_DIR$/Reviews/templates/Reviews/college_detail.html" />
         <option value="$PROJECT_DIR$/Reviews/apps.py" />
         <option value="$PROJECT_DIR$/CRS/settings.py" />
-        <option value="$PROJECT_DIR$/Reviews/models.py" />
-        <option value="$PROJECT_DIR$/Reviews/admin.py" />
-        <option value="$PROJECT_DIR$/Reviews/forms.py" />
-        <option value="$PROJECT_DIR$/Reviews/views.py" />
         <option value="$PROJECT_DIR$/Reviews/templates/Reviews/create_new_user.html" />
+        <option value="$PROJECT_DIR$/Reviews/forms.py" />
+        <option value="$PROJECT_DIR$/Reviews/templates/Reviews/review_detail.html" />
+        <option value="$PROJECT_DIR$/Reviews/views.py" />
+        <option value="$PROJECT_DIR$/Reviews/admin.py" />
+        <option value="$PROJECT_DIR$/Reviews/templates/Reviews/college_detail.html" />
+        <option value="$PROJECT_DIR$/Reviews/models.py" />
       </list>
     </option>
   </component>
@@ -151,6 +157,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -185,8 +193,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -258,7 +264,14 @@
       <option name="project" value="LOCAL" />
       <updated>1551458476502</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Users distinguished">
+      <created>1551816122038</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1551816122038</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -292,30 +305,14 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Searching with addition added" />
     <MESSAGE value="Querying enabled" />
-    <option name="LAST_COMMIT_MESSAGE" value="Querying enabled" />
+    <MESSAGE value="Users distinguished" />
+    <option name="LAST_COMMIT_MESSAGE" value="Users distinguished" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Reviews/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="25" column="30" lean-forward="false" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Reviews/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="55" column="32" lean-forward="false" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Reviews/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -451,13 +448,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Reviews/templates/Reviews/college_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CRS/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -488,38 +478,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Reviews/templates/Reviews/queries.html" />
-    <entry file="file://$PROJECT_DIR$/Reviews/templates/Reviews/Search.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="42" column="74" lean-forward="false" selection-start-line="42" selection-start-column="74" selection-end-line="42" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Reviews/templates/Reviews/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="18" column="29" lean-forward="false" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Reviews/templates/Reviews/review_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="72" lean-forward="true" selection-start-line="6" selection-start-column="72" selection-end-line="6" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Reviews/templates/Reviews/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="99">
           <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Reviews/templates/Reviews/college_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1150">
-          <caret line="46" column="43" lean-forward="false" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -579,13 +541,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Reviews/apps.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CRS/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="699">
@@ -599,11 +554,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="725">
           <caret line="33" column="25" lean-forward="true" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Reviews/migrations/0008_studentuser_user.py">
+    <entry file="file://$PROJECT_DIR$/Reviews/migrations/0008_studentuser_user.py" />
+    <entry file="file://$PROJECT_DIR$/Reviews/templates/Reviews/create_new_user.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -611,51 +566,107 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Reviews/models.py">
+    <entry file="file://$PROJECT_DIR$/Reviews/templates/Reviews/Search.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1175">
-          <caret line="47" column="70" lean-forward="true" selection-start-line="47" selection-start-column="70" selection-end-line="47" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="375">
+          <caret line="15" column="33" lean-forward="false" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Reviews/apps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Reviews/templates/Reviews/review_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Reviews/templates/Reviews/review_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Reviews/templates/Reviews/college_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Reviews/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state relative-caret-position="250">
+          <caret line="10" column="77" lean-forward="false" selection-start-line="10" selection-start-column="77" selection-end-line="10" selection-end-column="77" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Reviews/admin.py">
+    <entry file="file://$USER_HOME$/PycharmProjects/test/venv/Lib/site-packages/django/db/models/base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="292">
+          <caret line="504" column="8" lean-forward="false" selection-start-line="504" selection-start-column="8" selection-end-line="504" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Reviews/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4850">
-          <caret line="194" column="23" lean-forward="true" selection-start-line="194" selection-start-column="23" selection-end-line="194" selection-end-column="23" />
+        <state relative-caret-position="300">
+          <caret line="122" column="52" lean-forward="false" selection-start-line="122" selection-start-column="52" selection-end-line="122" selection-end-column="52" />
           <folding>
             <element signature="e#0#57#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Reviews/templates/Reviews/create_new_user.html">
+    <entry file="file://$PROJECT_DIR$/Reviews/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="19" column="17" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+        <state relative-caret-position="175">
+          <caret line="7" column="73" lean-forward="false" selection-start-line="7" selection-start-column="73" selection-end-line="7" selection-end-column="73" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Reviews/templates/Reviews/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="18" column="29" lean-forward="false" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Reviews/templates/Reviews/college_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="25" column="36" lean-forward="false" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Reviews/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="18" column="74" lean-forward="false" selection-start-line="18" selection-start-column="74" selection-end-line="18" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

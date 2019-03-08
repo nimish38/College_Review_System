@@ -11,6 +11,13 @@
 <h3>Rated {{ review.rating }}/5 by {{ review.user_name }} </h3>
 <p>{{ review.pub_date }}</p>
 <br>
+<p> Placement Rating : {{ review.placement_rate }}
+    <br>
+    Academics Rating : {{ review.academic_rate }}
+    <br>
+    Infrastructure Rating : {{ review.infra_rate }}
+    <br>
+</p>
 <p>{{ review.description }}</p>
 {% endblock %}
 </body>

@@ -8,7 +8,7 @@ class ReviewForm(ModelForm):
     anonymous = forms.BooleanField(required =False)
     class Meta:
         model = Review
-        fields = ['anonymous', 'description']
+        fields = ['anonymous', 'academic_rate', 'placement_rate', 'infra_rate', 'description']
         widgets = {
             'description': Textarea(attrs={'cols': 40, 'rows': 15})
         }
