@@ -65,7 +65,7 @@ def searched(request):
 			clge = College.objects.filter(name=clg_name)
 			clg=clge[0]
 			form = ReviewForm()
-			return render(request, 'Reviews/college_detail.html', {'college': clg, 'form': form})
+			return render(request, 'Reviews/college_detail.html', {'college': clg, 'form': form, 'user_clg':'none'})
 		else:
 			return render(request, 'Reviews/add_clg.html', {'name': clg_name})
 	return render(request, 'Reviews/Search.html')
@@ -87,7 +87,7 @@ def autocomplete_college(request):
 
 def review_list(request):
 	if request.user.is_authenticated==False:
-		return render(request, 'Reviews/login.html')
+		return render(request, 'Reviews/Search.html')
 	else:	
 		latest_review_list=Review.objects.order_by('-pub_date')[:9]
 		context={'latest_review_list':latest_review_list}
@@ -108,7 +108,13 @@ def college_list(request):
 def college_detail(request,college_id):
 	college=get_object_or_404(College,pk=college_id)
 	form=ReviewForm()
-	return render(request,'Reviews/college_detail.html',{'college':college, 'form':form})
+	user_clg = 'none'
+	if not request.user.is_anonymous:
+		if StudentUser.objects.filter(user=request.user).exists():
+			user_clg = StudentUser.objects.filter(user=request.user)[0].college
+		if IndustryUser.objects.filter(user=request.user).exists():
+			user_clg = college.name
+	return render(request,'Reviews/college_detail.html',{'college':college, 'form':form, 'user_clg':user_clg})
 
 
 def add_review(request,college_id):

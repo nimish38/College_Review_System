@@ -7,9 +7,15 @@
 		</div>
 		<div id="navbar">
 			<ul>
-			<li><a href="{% url 'Reviews:review_list' %}">Home</a></li>						
+			<li><a href="{% url 'Reviews:review_list' %}">Home</a></li>
 			<li><a href="{% url 'Reviews:college_list' %}">College List</a></li>
-			<li><a href="{% url 'Reviews:logout_user' %}">LogOut</a></li> 
+				<li><a href="{% url 'Reviews:autocomplete_college' %}">Search</a></li>
+			{% if user.is_authenticated %}
+				<li><a href="{% url 'Reviews:logout_user' %}">LogOut</a></li>
+			{% else %}
+				<li><a href="{% url 'Reviews:login_user' %}">Login</a></li>
+				<li><a href="{% url 'Reviews:create_new_user' %}">Signup</a></li>
+			{% endif %}
 			</ul>
 		</div>
 	</nav>

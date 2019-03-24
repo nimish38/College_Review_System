@@ -4,6 +4,7 @@
 
 {% block title %}
 <i><h1>{{ college.name }}</h1></i>
+
 <hr><br>
 <h3>Have a query?Clear them!! </h3>
 <br>
@@ -51,12 +52,14 @@
 <h3>Pending Queries....</h3><br><br>
 {% for qry in college.pendingquery_set.all %}
 <h4> {{ qry.qsn }} </h4>
+{% if college.name|stringformat:"s" == user_clg|stringformat:"s" %}
 <form action="{% url 'Reviews:answer_query'%}" method="post">
 	{% csrf_token %}
 	<input type="hidden" value="{{ qry.qsn }}" name="qstn">
 	<input type="hidden" value="{{ college.name }}" name="colg">
 	<button type="submit">Answer</button>
 </form>
+{% endif %}
 		<br>
 {% endfor %}
 {% else %}
@@ -78,6 +81,7 @@
 
 <br>
 <hr>
+{% if college.name|stringformat:"s" == user_clg|stringformat:"s" %}
 <h2>Add your review about this college <h2>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
@@ -86,6 +90,8 @@
     {{ form.as_p }}
     <input type="submit" value="Add" />
 </form>
+	{% endif %}
+
 {% endblock %}
 
 </body>
