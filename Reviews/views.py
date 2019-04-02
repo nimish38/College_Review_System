@@ -123,6 +123,7 @@ def add_review(request,college_id):
 	form = ReviewForm(request.POST)
 	if form.is_valid():
 		description = form.cleaned_data['description']
+		#dept = form.cleaned_data['dept']
 		anonymous=form.cleaned_data['anonymous']
 		acad = int(form.cleaned_data['academic_rate'])
 		place = int(form.cleaned_data['placement_rate'])
@@ -139,6 +140,7 @@ def add_review(request,college_id):
 
 		review = Review()
 		review.college = college
+		review.dept = StudentUser.objects.filter(user=request.user)[0].dept
 		if anonymous:
 			review.user_name = "Anonymous"
 		else:
@@ -185,6 +187,7 @@ def create_new_user(request):
 			stud.user=user
 			stud.college=Sform.cleaned_data['college']
 			stud.category=Sform.cleaned_data['category']
+			stud.dept = Sform.cleaned_data['dept']
 			stud.save()
 			login(request, user)
 			return redirect('Reviews:review_list')

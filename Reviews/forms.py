@@ -1,11 +1,12 @@
 from django import forms
 from django.forms import ModelForm,PasswordInput, Textarea ,CharField
-from Reviews.models import Review,StudentUser, IndustryUser
+from Reviews.models import Review,StudentUser, IndustryUser, Department
 from django.contrib.auth.models import User
 
 
 class ReviewForm(ModelForm):
     anonymous = forms.BooleanField(required =False)
+
     class Meta:
         model = Review
         fields = ['anonymous', 'academic_rate', 'placement_rate', 'infra_rate', 'description']
@@ -26,7 +27,7 @@ class UserForm(ModelForm):
 class StudUserForm(ModelForm):
     class Meta:
         model = StudentUser
-        fields = ['category', 'college']
+        fields = ['category', 'college', 'dept']
 
 
 class IndUserForm(ModelForm):

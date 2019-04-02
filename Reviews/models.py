@@ -6,6 +6,9 @@ from django.contrib.auth.models import User
 
 class College(models.Model):
 	name = models.CharField(max_length=100)
+	address = models.CharField(max_length=1000, default='N/A')
+	pic = models.ImageField(upload_to='images/', default='def.jpg')
+	nirf_rating = models.IntegerField(default=0)
 
 	def avg_rating(self):
 		tot = list(map(lambda x:x.rating,self.review_set.all()))
@@ -52,8 +55,18 @@ feedback = (
 )
 
 
+class Department(models.Model):
+    department = models.CharField(max_length=100)
+    college = models.ForeignKey(College,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.department
+
+
+
 class Review(models.Model):
-	college = models.ForeignKey(College,on_delete=models.CASCADE)
+	college = models.ForeignKey(College, on_delete=models.CASCADE)
+	dept = models.ForeignKey(Department, on_delete=models.CASCADE)
 	pub_date = models.DateTimeField('Review Publishing Date')
 	user_name = models.CharField(max_length=100)
 	description = models.CharField(max_length=200)
@@ -84,6 +97,7 @@ class StudentUser(models.Model):
 	user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
 	category = models.CharField(max_length=20, choices=type_choices,default='Other')
 	college = models.ForeignKey(College,on_delete=models.CASCADE)
+	dept = models.ForeignKey(Department,on_delete=models.CASCADE)
 
 	def __str__(self):
 		return self.user.username
@@ -92,3 +106,19 @@ class StudentUser(models.Model):
 class IndustryUser(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
 	company = models.CharField(max_length=1000)
+
+
+class Category(models.Model):
+	caste = models.CharField(max_length=10)
+
+	def __str__(self):
+		return self.caste
+
+
+class Cutoff(models.Model):
+	college = models.ForeignKey(College, on_delete=models.CASCADE)
+	dept = models.ForeignKey(Department, on_delete=models.CASCADE)
+	caste = models.ForeignKey(Category, on_delete=models.CASCADE)
+	score = models.IntegerField(default=0)
+	rank = models.IntegerField(default=0)
+
