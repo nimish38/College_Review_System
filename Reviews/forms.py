@@ -27,7 +27,8 @@ class UserForm(ModelForm):
 class StudUserForm(ModelForm):
     class Meta:
         model = StudentUser
-        fields = ['category', 'college', 'dept']
+        fields = ['category', 'college', 'depart']
+
 
 
 class IndUserForm(ModelForm):

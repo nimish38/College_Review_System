@@ -3,8 +3,15 @@
 {% extends 'Reviews/base.html' %}
 
 {% block title %}
-<i><h1>{{ college.name }}</h1></i>
-
+{{ collge.pic }}<br>
+<i><h2>{{ college.name }}</h2></i>
+<h3>{{ college.address }}</h3>
+<h4>NIRF RATING: {% if college.nirf_rating > 0 %}
+						{{ college.nirf_rating }}
+				{% else %}
+						N/A
+				{% endif %}
+</h4>
 <hr><br>
 <h3>Have a query?Clear them!! </h3>
 <br>
@@ -15,38 +22,45 @@
     <button type="submit">Request</button>
 </form>
 <br>
-<hr>
-<h3>{{ college.review_set.count }} reviews
-	{% if college.review_set.count > 0	%}
-		(Total = {{college.avg_rating | floatformat}} rated)
-		<br>
-		(Placement = {{college.avg_p_rating | floatformat}})
-		<br>
-		(Academics = {{college.avg_a_rating | floatformat}})
-		<br>
-		(Placement = {{college.avg_i_rating | floatformat}})
-	</h3>
-	{% endif %}
 {% endblock %}
 
 {% block content %}
-{% if college.review_set.all %}
+<hr>
 <div>
-	{% for review in college.review_set.all %}
-	<div>
-		<em>{{ review.description }}</em>
-		<h5>Rated {{review.rating }}/5 by user {{ review.user_name }}</h5>
-		<h4><a href="{% url 'Reviews:review_detail' review.id%}">
-		Read more..
-		</a></h4>
-	</div>
-	{% endfor %}
+    {% for dep in deps %}
+       <h3>{{dep }} {{ dep.review_set.count }} </h3><br>
+           {% if dep.review_set.count > 0	%}
+                (Total = {{dep.avg_rating | floatformat}} rated)
+                <br>
+                (Placement = {{dep.avg_p_rating | floatformat}})
+                <br>
+                (Academics = {{dep.avg_a_rating | floatformat}})
+                <br>
+                (Infrastructure = {{dep.avg_i_rating | floatformat}})
+                <br>
+                <div>
+                <br>{{ dep.review_set.count }} Reviews: <br>
+                {% for review in dep.review_set.all %}
+                <div>
+                  <br> Description: <em>{{ review.description }}</em>
+                    <h5>Rated {{review.rating }}/5 by user {{ review.user_name }}</h5>
+                    <h4><a href="{% url 'Reviews:review_detail' review.id%}">
+                    Read more..
+                    </a></h4>
+                </div>
+                {% endfor %}
+                </div>
+            {% else %}
+                <h4>No Reviews for this department yet</h4>
+            {% endif %}
+    <hr>
+    {% endfor %}
 </div>
-{% else %}
-<h4>No Reviews for this college yet</h4>
-{% endif %}
+
 <br>
 <hr>
+
+
 
 {%  if college.pendingquery_set.all %}
 <h3>Pending Queries....</h3><br><br>

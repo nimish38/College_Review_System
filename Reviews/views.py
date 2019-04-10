@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate,logout,login
 from django.shortcuts import render,get_object_or_404,redirect
-from .models import Review,College,PendingQuery,AnsweredQueries, StudentUser, IndustryUser
+from .models import Review,College,PendingQuery,AnsweredQueries, StudentUser, IndustryUser,Department,Cutoff, Category
 from django.urls import reverse
 from django.http import HttpResponseRedirect,JsonResponse
 from .forms import ReviewForm,StudUserForm, UserForm, IndUserForm
@@ -8,14 +8,27 @@ import datetime
 from textblob import TextBlob
 
 
+def recommend(request):
+	if request.method=="POST":
+		marks=int(request.POST['marks'])
+		rank=int(request.POST['rank'])
+		dep=request.POST['dep']
+		caste=Category.objects.filter(caste=request.POST['caste'])
+		best_clgs=Cutoff.objects.filter(dept=dep, caste=caste[0], score__lte=marks, rank__gte=rank).order_by('-score')
+		if len(best_clgs)>5:
+			best_clgs=best_clgs[:5]
+		return render(request,'Reviews/rec_result.html',{'best_clgs': best_clgs})
+	return render(request,'Reviews/recommender.html')
+
+
 def answer_query(request):
-	qsn=request.POST['qstn']
-	col=request.POST['colg']
-	context={
-		'qsn': qsn,
-		'col': col,
-	}
-	return render(request,'Reviews/answer.html',context)
+    qsn=request.POST['qstn']
+    col=request.POST['colg']
+    context={
+        'qsn': qsn,
+        'col': col,
+    }
+    return render(request,'Reviews/answer.html',context)
 
 
 def submit_query(request):
@@ -107,6 +120,7 @@ def college_list(request):
 
 def college_detail(request,college_id):
 	college=get_object_or_404(College,pk=college_id)
+	deps=Department.objects.filter(college=college)
 	form=ReviewForm()
 	user_clg = 'none'
 	if not request.user.is_anonymous:
@@ -114,16 +128,21 @@ def college_detail(request,college_id):
 			user_clg = StudentUser.objects.filter(user=request.user)[0].college
 		if IndustryUser.objects.filter(user=request.user).exists():
 			user_clg = college.name
-	return render(request,'Reviews/college_detail.html',{'college':college, 'form':form, 'user_clg':user_clg})
+	return render(request,'Reviews/college_detail.html',{'college':college,'deps':deps, 'form':form, 'user_clg':user_clg})
 
 
 def add_review(request,college_id):
-	#vals= {'Poor': 1, 'Satisfactory': 2, 'Average': 3, 'Good': 4, 'Excellent': 5}
 	college = get_object_or_404(College, pk=college_id)
+	deps = Department.objects.filter(college=college)
 	form = ReviewForm(request.POST)
+	user_clg = 'none'
+	if not request.user.is_anonymous:
+		if StudentUser.objects.filter(user=request.user).exists():
+			user_clg = StudentUser.objects.filter(user=request.user)[0].college
+		if IndustryUser.objects.filter(user=request.user).exists():
+			user_clg = college.name
 	if form.is_valid():
 		description = form.cleaned_data['description']
-		#dept = form.cleaned_data['dept']
 		anonymous=form.cleaned_data['anonymous']
 		acad = int(form.cleaned_data['academic_rate'])
 		place = int(form.cleaned_data['placement_rate'])
@@ -140,7 +159,10 @@ def add_review(request,college_id):
 
 		review = Review()
 		review.college = college
-		review.dept = StudentUser.objects.filter(user=request.user)[0].dept
+		if StudentUser.objects.filter(user=request.user).exists():
+			review.dept = StudentUser.objects.filter(user=request.user)[0].dept
+		if IndustryUser.objects.filter(user=request.user).exists():
+			review.dept = Department.objects.filter(college=college, department='TnP')[0]
 		if anonymous:
 			review.user_name = "Anonymous"
 		else:
@@ -156,7 +178,7 @@ def add_review(request,college_id):
 		# returning an HttpResponseRedirect prevents data from being posted twice if a user hits the Back button.
 
 		return HttpResponseRedirect(reverse('Reviews:add_review', args=(college.id,)))
-	return render(request, 'Reviews/college_detail.html', {'college': college, 'form': form})
+	return render(request, 'Reviews/college_detail.html', {'college': college,'deps':deps,'user_clg': user_clg, 'form': form})
 
 
 def login_user(request):
@@ -187,7 +209,9 @@ def create_new_user(request):
 			stud.user=user
 			stud.college=Sform.cleaned_data['college']
 			stud.category=Sform.cleaned_data['category']
-			stud.dept = Sform.cleaned_data['dept']
+			d=Sform.cleaned_data['depart']
+			stud.dept = Department.objects.filter(department=d,college=stud.college)[0]
+			print(stud.dept.department,stud.dept.college)
 			stud.save()
 			login(request, user)
 			return redirect('Reviews:review_list')

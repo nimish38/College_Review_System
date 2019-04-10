@@ -25,7 +25,7 @@ class DeptAdmin(admin.ModelAdmin):
 class CutAdmin(admin.ModelAdmin):
 	model=Cutoff
 	list_display = ('college', 'dept', 'caste', 'score', 'rank')
-	list_filter = ['college', 'dept']
+	list_filter = ['college']
 
 
 admin.site.register(College)

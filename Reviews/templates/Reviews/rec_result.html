@@ -1,0 +1,29 @@
+<html>
+<body>
+
+{% extends 'Reviews/base.html' %}
+
+{% block title %}
+    Why settle for mediocre college when you can get one the best college!!!
+{% endblock %}
+
+{% block content %}
+
+<h3><i>Top college recommendation for you:</i></h3>
+<br>
+{% for col in best_clgs %}
+    <br>
+    Name: <a href="{% url 'Reviews:college_detail' col.college.id%}">{{ col.college }}</a>
+    <br>
+    Caste: {{ col.caste }}
+    <br>
+    Department: {{ col.dept }}
+    <br>
+    Last year cutoff: {{ col.score }}
+    <br>
+    <hr>
+{% endfor %}
+
+{% endblock %}
+</body>
+</html>

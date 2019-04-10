@@ -19,6 +19,6 @@ urlpatterns = [
 	path('req_query/', views.req_query, name='req_query'),
 	path('answer_query/', views.answer_query, name='answer_query'),
 	path('submit_query/', views.submit_query, name='submit_query'),
-
+	path('recommend/', views.recommend, name='recommend'),
 ]
 
