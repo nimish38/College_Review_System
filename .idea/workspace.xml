@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03cd47a7-959b-45ed-bef8-510f69c95e88" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Reviews/templates/Reviews/rec_result.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Reviews/templates/Reviews/recommender.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Reviews/admin.py" afterPath="$PROJECT_DIR$/Reviews/admin.py" />
-      <change beforePath="$PROJECT_DIR$/Reviews/forms.py" afterPath="$PROJECT_DIR$/Reviews/forms.py" />
-      <change beforePath="$PROJECT_DIR$/Reviews/models.py" afterPath="$PROJECT_DIR$/Reviews/models.py" />
-      <change beforePath="$PROJECT_DIR$/Reviews/templates/Reviews/base.html" afterPath="$PROJECT_DIR$/Reviews/templates/Reviews/base.html" />
-      <change beforePath="$PROJECT_DIR$/Reviews/templates/Reviews/college_detail.html" afterPath="$PROJECT_DIR$/Reviews/templates/Reviews/college_detail.html" />
-      <change beforePath="$PROJECT_DIR$/Reviews/urls.py" afterPath="$PROJECT_DIR$/Reviews/urls.py" />
-      <change beforePath="$PROJECT_DIR$/Reviews/views.py" afterPath="$PROJECT_DIR$/Reviews/views.py" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -348,7 +338,14 @@
       <option name="project" value="LOCAL" />
       <updated>1554221187993</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Differentiated by departments and recommendations added partially.">
+      <created>1554929931413</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1554929931413</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -386,7 +383,8 @@
     <MESSAGE value="Added multiple types of college ratings." />
     <MESSAGE value="User Privileges assigned." />
     <MESSAGE value="Populated with data." />
-    <option name="LAST_COMMIT_MESSAGE" value="Populated with data." />
+    <MESSAGE value="Differentiated by departments and recommendations added partially." />
+    <option name="LAST_COMMIT_MESSAGE" value="Differentiated by departments and recommendations added partially." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
