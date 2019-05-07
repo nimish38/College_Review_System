@@ -1,9 +1,7 @@
 <html>
-<body>
 {% extends 'Reviews/base.html' %}
-
 {% block title %}
-{{ collge.pic }}<br>
+<img src={{ college.pic.url }} height="300" width="500 " /><br>
 <i><h2>{{ college.name }}</h2></i>
 <h3>{{ college.address }}</h3>
 <h4>NIRF RATING: {% if college.nirf_rating > 0 %}

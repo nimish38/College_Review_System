@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class College(models.Model):
 	name = models.CharField(max_length=100)
 	address = models.CharField(max_length=1000, default='N/A')
-	pic = models.ImageField(upload_to='images/', default='def.jpg')
+	pic = models.ImageField(upload_to='', default='def.jpg')
 	nirf_rating = models.IntegerField(default=0)
 
 	def __str__(self):

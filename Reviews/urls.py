@@ -22,4 +22,3 @@ urlpatterns = [
 	path('recommend/', views.recommend, name='recommend'),
 	path('get_deps/',views.get_deps, name='get_deps'),
 ]
-
