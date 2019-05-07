@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm,PasswordInput, Textarea ,CharField
-from Reviews.models import Review,StudentUser, IndustryUser, Department
+from Reviews.models import Review,StudentUser, IndustryUser, Department,College
 from django.contrib.auth.models import User
 
 
@@ -28,7 +28,9 @@ class StudUserForm(ModelForm):
     class Meta:
         model = StudentUser
         fields = ['category', 'college', 'depart']
-
+        widgets = {
+            'depart': forms.Select()
+        }
 
 
 class IndUserForm(ModelForm):

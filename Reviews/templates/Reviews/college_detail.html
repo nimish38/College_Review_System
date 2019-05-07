@@ -28,7 +28,7 @@
 <hr>
 <div>
     {% for dep in deps %}
-       <h3>{{dep }} {{ dep.review_set.count }} </h3><br>
+       <h3>{{dep }} </h3><br>
            {% if dep.review_set.count > 0	%}
                 (Total = {{dep.avg_rating | floatformat}} rated)
                 <br>

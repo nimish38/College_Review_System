@@ -8,17 +8,34 @@ import datetime
 from textblob import TextBlob
 
 
+def get_deps(request):
+	if request.is_ajax():
+		q=request.GET.get('clg', None)
+		c=College.objects.filter(name=q)[0]
+		queryset = Department.objects.filter(college=c)
+		list = []
+		for i in queryset:
+			if i.department!='TnP':
+				list.append(i.department)
+		data = {
+			'list': list,
+		}
+		return JsonResponse(data)
+	return render(request,'Reviews/create_new_user.html',{})
+
+
 def recommend(request):
-	if request.method=="POST":
-		marks=int(request.POST['marks'])
-		rank=int(request.POST['rank'])
-		dep=request.POST['dep']
-		caste=Category.objects.filter(caste=request.POST['caste'])
-		best_clgs=Cutoff.objects.filter(dept=dep, caste=caste[0], score__lte=marks, rank__gte=rank).order_by('-score')
-		if len(best_clgs)>5:
-			best_clgs=best_clgs[:5]
-		return render(request,'Reviews/rec_result.html',{'best_clgs': best_clgs})
-	return render(request,'Reviews/recommender.html')
+    if request.method == "POST":
+        marks=int(request.POST['marks'])
+        rank=int(request.POST['rank'])
+        dep=request.POST.getlist('dep')
+        caste=Category.objects.filter(caste=request.POST['caste'])
+        best_clgs=Cutoff.objects.filter(dept__in=dep, caste=caste[0], score__lte=marks, rank__gte=rank).order_by('-score')
+        print(best_clgs)
+        if len(best_clgs)>5:
+            best_clgs=best_clgs[:5]
+        return render(request,'Reviews/rec_result.html',{'best_clgs': best_clgs})
+    return render(request,'Reviews/recommender.html')
 
 
 def answer_query(request):
@@ -32,19 +49,26 @@ def answer_query(request):
 
 
 def submit_query(request):
-	qsn = request.POST['qstn']
-	col = request.POST['colg']
-	ans = request.POST['ans']
-	aq=AnsweredQueries()
-	aq.qsn=qsn
-	aq.ans=ans
-	pq = PendingQuery.objects.filter(qsn=qsn).delete()
-	form=ReviewForm()
-	clge = College.objects.filter(name=col)
-	clg = clge[0]
-	aq.college=clg
-	aq.save()
-	return render(request, 'Reviews/college_detail.html', {'college': clg, 'form': form})
+    qsn = request.POST['qstn']
+    col = request.POST['colg']
+    ans = request.POST['ans']
+    aq=AnsweredQueries()
+    aq.qsn=qsn
+    aq.ans=ans
+    pq = PendingQuery.objects.filter(qsn=qsn).delete()
+    clge = College.objects.filter(name=col)
+    clg = clge[0]
+    aq.college=clg
+    aq.save()
+    deps = Department.objects.filter(college=clg)
+    form = ReviewForm()
+    user_clg = 'none'
+    if not request.user.is_anonymous:
+        if StudentUser.objects.filter(user=request.user).exists():
+            user_clg = StudentUser.objects.filter(user=request.user)[0].college
+        if IndustryUser.objects.filter(user=request.user).exists():
+            user_clg = clg.name
+    return render(request, 'Reviews/college_detail.html',{'college': clg, 'deps': deps, 'form': form, 'user_clg': user_clg})
 
 
 def add_college(request):
@@ -57,18 +81,25 @@ def add_college(request):
 
 
 def req_query(request):
-	qry = request.POST['qry']
-	college_nm=request.POST['col']
-	clge = College.objects.filter(name=college_nm)
-	clg = clge[0]
+    qry = request.POST['qry']
+    college_nm=request.POST['col']
+    clge = College.objects.filter(name=college_nm)
+    clg = clge[0]
 
-	pq = PendingQuery()
-	pq.college = clg
-	pq.qsn = qry
-	pq.save()
+    pq = PendingQuery()
+    pq.college = clg
+    pq.qsn = qry
+    pq.save()
+    deps = Department.objects.filter(college=clg)
+    form = ReviewForm()
+    user_clg = 'none'
+    if not request.user.is_anonymous:
+        if StudentUser.objects.filter(user=request.user).exists():
+            user_clg = StudentUser.objects.filter(user=request.user)[0].college
+        if IndustryUser.objects.filter(user=request.user).exists():
+            user_clg = clg.name
+    return render(request, 'Reviews/college_detail.html',{'college': clg, 'deps': deps, 'form': form, 'user_clg': user_clg})
 
-	form = ReviewForm()
-	return render(request, 'Reviews/college_detail.html', {'college': clg, 'form': form})
 
 
 def searched(request):

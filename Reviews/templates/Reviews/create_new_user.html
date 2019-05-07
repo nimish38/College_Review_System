@@ -1,4 +1,27 @@
 <html>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
+        <script>
+            $(document).ready(function(){
+                 $('select#id_college').change(function () {
+                     var optionSelected = $(this).find("option:selected");
+                     var valueSelected  = optionSelected.val();
+                     var college_name   = optionSelected.text();
+					$.ajax({
+					url: "{% url 'Reviews:get_deps' %}",
+					data: {'clg': college_name},
+					dataType: 'json',
+					success: function(data){
+						 $("#id_depart option").remove();
+						for (var i = data.list.length - 1; i >= 0; i--) {
+							$("#id_depart").append('<option>'+ data.list[i] +'</option>');
+						};
+					}
+                 });
+            });
+        });
+
+        </script>
 <body>
 
 <h1>
