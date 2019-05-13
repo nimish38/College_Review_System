@@ -108,8 +108,15 @@ def searched(request):
 		if College.objects.filter(name=clg_name).exists():
 			clge = College.objects.filter(name=clg_name)
 			clg=clge[0]
+			deps = Department.objects.filter(college=clg)
 			form = ReviewForm()
-			return render(request, 'Reviews/college_detail.html', {'college': clg, 'form': form, 'user_clg':'none'})
+			user_clg = 'none'
+			if not request.user.is_anonymous:
+				if StudentUser.objects.filter(user=request.user).exists():
+					user_clg = StudentUser.objects.filter(user=request.user)[0].college
+				if IndustryUser.objects.filter(user=request.user).exists():
+					user_clg = clg.name
+			return render(request, 'Reviews/college_detail.html',{'college': clg, 'deps': deps, 'form': form, 'user_clg': user_clg})
 		else:
 			return render(request, 'Reviews/add_clg.html', {'name': clg_name})
 	return render(request, 'Reviews/Search.html')
@@ -226,9 +233,9 @@ def login_user(request):
 
 
 def create_new_user(request):
-	Uform = UserForm(data=request.POST)
-	Sform = StudUserForm(data=request.POST)
-	Iform = IndUserForm(data=request.POST)
+	Uform = UserForm()
+	Sform = StudUserForm()
+	Iform = IndUserForm()
 	if request.method == "POST":
 		if Uform.is_valid() and Sform.is_valid():
 			user = Uform.save(commit=False)
