@@ -3,22 +3,21 @@
 
 {% extends 'Reviews/base.html' %}
 
-{% block title %}
-<h2><a href="{% url 'Reviews:college_detail' review.college.id %}">{{ review.college.name }}</a></h2>
-{% endblock %}
-
-{% block content %}
-<h3>Rated {{ review.rating }}/5 by {{ review.user_name }} </h3>
-<p>{{ review.pub_date }}</p>
-<br>
-<p> Placement Rating : {{ review.placement_rate }}
+{% block title %}{% endblock %}
+{% block body %}
+<ul class="list-group" style="list-style-type: none;">
+<li class="list-group-item"><a href="{% url 'Reviews:college_detail' review.college.id %}">{{ review.college.name }}</a></li><li class="list-group-item">Rated <b>{{ review.rating }} / 5</b>   by <b><i>{{ review.user_name }}</i></b>   on  {{ review.pub_date }}</li>
+<li class="list-group-item">
+    Placement Rating : {{ review.placement_rate }}
     <br>
     Academics Rating : {{ review.academic_rate }}
     <br>
     Infrastructure Rating : {{ review.infra_rate }}
     <br>
-</p>
-<p>{{ review.description }}</p>
+<hr>
+    <h4>Description:</h4><br>
+    <p>{{ review.description }}</p>
+</li></ul>
 {% endblock %}
 </body>
 </html>

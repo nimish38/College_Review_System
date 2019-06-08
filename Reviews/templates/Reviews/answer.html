@@ -2,20 +2,20 @@
 <body>
 
 {% extends 'Reviews/base.html' %}
-
 {% block title %}
-    {{ col }}
+<h3>{{ col }}</h3>
     <br>
-<h4>{{ qsn }}</h4>
+<h4>Requsted query:   <b><i>{{ qsn }}</i></b></h4>
 {% endblock %}
-
-{% block content %}
+{% block body %}
 <form  action="{% url 'Reviews:submit_query' %}" method="post">
 	{% csrf_token %}
     <input type="hidden" value="{{ qsn }}" name="qstn">
 	<input type="hidden" value="{{ col }}" name="colg">
     <h4>Answer: </h4>
+    <br>
     <textarea name="ans"></textarea>
+    <br><br>
 <button type="submit">Submit</button>
 </form>
 {% endblock %}

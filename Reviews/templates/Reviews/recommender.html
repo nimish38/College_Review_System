@@ -1,61 +1,91 @@
-<html>
-<body>
-<h1>Get best College Recommendations</h1>
-<hr>
-<br>
-<form action="{% url 'Reviews:recommend' %}" method="post">
-{% csrf_token %}
-<div>
-	Name:
-	<input type="text" name="name">
+<!doctype html>
+<html lang="en">
+  <head>
+    
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Akronim|Stylish" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Lato" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="{% static 'Reviews/css/style.css'%}">
+
+    <title>{% block title %}{%endblock %}</title>
+ </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+  <a class="navbar-brand" href="{% url 'Reviews:searched' %}">College Recommendation System</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  </nav>
+
+ {% block body %}{%endblock %} 
+
+<div class="card">
+  <div class="card-header">
+    Get best College Recommendations
+  </div>
+  <div class="card-body">
+     <div class="ui-widget">
+       <form action="{% url 'Reviews:recommend' %}" method="post">
+        {% csrf_token %}
+        <label>Name: </label>
+        <input type ="text" name="name">
+        <label>Enter your CET marks: </label>
+        <input type ="text" name="marks">
+        <label>Enter your AIR rank: </label>
+        <input type ="text" name="rank">
+
+        <label>Caste:</label><br>
+        <div>
+  <select name="caste">
+    <option value="Open">Open</option>
+    <option value="SC">SC</option>
+    <option value="ST">ST</option>
+    <option value="NT">NT</option>
+  </select>
 </div>
 <br>
 <div>
-	Enter your CET marks
-	<input type="text" name="marks">
+  Enter your departments of choice:
+  <br>
+  <select name="dep" multiple>
+    <option value="Mechanical">Mechanical</option>
+    <option value="Computer">Computer</option>
+    <option value="IT">IT</option>
+    <option value="E&tc">E&Tc</option>
+    <option value="Civil">Civil</option>
+    <option value="Electrical">Electrical</option>
+    <option value="Chemical">Chemical</option>
+    <option value="Instrumentation">Instrumentation</option>
+    <option value="Robotics&Automation">Robotics&Automation</option>
+    <option value="Production">Production</option>
+    <option value="Petroleum">Petroleum</option>
+    <option value="Planning">Planning</option>
+    <option value="Polymer">Polymer</option>
+    <option value="Electronics">Electronics</option>
+    <option value="Industrial&Production">Industrial&Production</option>
+    <option value="Metallurgical">Metallurgical</option>
+  </select>
 </div>
 <br>
 <div>
-	Enter your AIR rank
-	<input type="text" name="rank">
+  <button type="submit"> Submit </button>
 </div>
-<br>
-<div>
-	<select name="caste">
-		<option value="Open">Open</option>
-		<option value="SC">SC</option>
-		<option value="ST">ST</option>
-		<option value="NT">NT</option>
-	</select>
+
+        
+      </form>
+  </div>
 </div>
-<br>
-<div>
-	Enter your departments of choice:
-	<br>
-	<select name="dep" multiple>
-		<option value="Mechanical">Mechanical</option>
-		<option value="Computer">Computer</option>
-		<option value="IT">IT</option>
-		<option value="E&tc">E&Tc</option>
-		<option value="Civil">Civil</option>
-		<option value="Electrical">Electrical</option>
-		<option value="Chemical">Chemical</option>
-		<option value="Instrumentation">Instrumentation</option>
-		<option value="Robotics&Automation">Robotics&Automation</option>
-		<option value="Production">Production</option>
-		<option value="Petroleum">Petroleum</option>
-		<option value="Planning">Planning</option>
-		<option value="Polymer">Polymer</option>
-		<option value="Electronics">Electronics</option>
-		<option value="Industrial&Production">Industrial&Production</option>
-		<option value="Metallurgical">Metallurgical</option>
-	</select>
-</div>
-<br>
-<div>
-	<button type="submit"> Submit </button>
-</div>
-</form>
+ 
+
+
 
 </body>
 </html>

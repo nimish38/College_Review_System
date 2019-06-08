@@ -1,30 +1,62 @@
-<html>
-<body>
-<h1>Login</h1>
+<!doctype html>
+<html lang="en">
+  <head>
+    
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<form action="{% url 'Reviews:login_user' %}" method="post">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Akronim|Stylish" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Lato" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="{% static 'Reviews/css/style.css'%}">
+
+    <title>{% block title %}{%endblock %}</title>
+ </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+  <a class="navbar-brand" href="{% url 'Reviews:searched' %}">College Recommendation System</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  </nav>
+
+ {% block body %}{%endblock %} 
+<div class="card">
+  <div class="card-header">
+    LogIn
+  </div>
+  <div class="card-body">
+    <form action="{% url 'Reviews:login_user' %}" method="post">
 {% csrf_token %}
 <div>
-	Username: 
-	<input type="text" name="username">
+  Username: 
+  <input type="text" name="username">
 </div>
 <br>
 <div>
-	Password:
-	<input type="password" name="password">
+  Password:
+  <input type="password" name="password">
 </div>
 <br>
-<div>
-	<button type="submit"> Log In </button>
+<div align="center">
+  <button type="submit"> Log In </button>
 </div>
 </form>
 
 <br><br>
-<h4> Dont have an account?? </h4>
+      <div align="center">
+<h4> Don't have an account?? </h4>
 <br>
 <form>
-<input type="button" value="Signup" onclick="window.location.href='{% url 'Reviews:create_new_user' %}'" />
-
+<input type="button" value="Signup" onclick="window.location.href='{% url 'Reviews:create_new_user' %}'" /
 </form>
+  </div>
+</div>
+</div>
 </body>
 </html>

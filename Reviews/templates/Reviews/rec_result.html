@@ -3,27 +3,40 @@
 
 {% extends 'Reviews/base.html' %}
 
-{% block title %}
-    Why settle for mediocre college when you can get one the best college!!!
-{% endblock %}
+{% block title %}<h3><u><b>Our Top 5 Recommendations for you:</b></u></h3>{% endblock %}
 
-{% block content %}
 
-<h3><i>Top college recommendation for you:</i></h3>
+
+{% block body %}
+
+<div  class="announcement-line" id="announcementLine">
+    <marquee  direction="left" id="announcementLinetext"> Why settle for mediocre college when you can get one of the best colleges!!!  </marquee>
+</div>
+
 <br>
-{% for col in best_clgs %}
-    <br>
-    Name: <a href="{% url 'Reviews:college_detail' col.college.id%}">{{ col.college }}</a>
-    <br>
-    Caste: {{ col.caste }}
-    <br>
-    Department: {{ col.dept }}
-    <br>
-    Last year cutoff: {{ col.score }}
-    <br>
-    <hr>
-{% endfor %}
+ <div class="col-md-7">
+            <div class="container-fluid">
+ 
+             {% for col in best_clgs %}   
+            <h3>Name :
+                <a href="{% url 'Reviews:college_detail' col.college.id%}">{{ col.college }}</a></h3>
+                <hr>
+            <h3>Caste :
+                {{ col.caste }}</h3>
+                <hr>
+            <h3>Department :
+                {{ col.dept }}</h3>
+                <hr>
+            <h3>Last year cutoff :
+                {{ col.score }}</h3>
+                <hr>
+                <br><br>
+            {% endfor %}            
+            </div>
+</div>
 
-{% endblock %}
+
+{% endblock %}       
+
 </body>
 </html>

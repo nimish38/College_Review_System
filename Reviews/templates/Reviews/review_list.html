@@ -2,24 +2,28 @@
 <body>
 {% extends 'Reviews/base.html' %}
 {% block title %}
-<h2>Latest Reviews</h2>
+<h2><u><i><b>Latest Reviews:</b></i></u></h2>
 {% endblock %}
 
-{% block content %}
+{% block body %}
+<br><h6>
 {% if latest_review_list %}
-<div class="row">
+
 	{% for review in latest_review_list %}
-	<div class="col-xs-6 col-lg-4">
-	<h3><a href="{% url 'Reviews:review_detail' review.id %}">
+	<div class="col-xs-12 col-lg-12">
+	<ul class="list-group" style="list-style-type: none;">
+        <li class="list-group-item"><a href="{% url 'Reviews:review_detail' review.id %}">
 	{{ review.college.name }}
-	</a></h3>
-	<h4> rated {{ review.rating }} of 5 by {{ review.user_name }}</h4>
-	<p>{{ review.description }}  </p>
-	</div>
+	</a></li>
+	<li class="list-group-item"> Rated  {{ review.rating }} / 5  by {{ review.user_name }}<br>
+	{{ review.description }}
+	</li>
+    </ul>
 	<br>
+    </div>
 	{% endfor %}
-</div>
 {% else %}
+</h6>
 <p> No reviews available </p>
 {% endif %}
 {% endblock %}

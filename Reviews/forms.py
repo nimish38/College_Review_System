@@ -11,7 +11,7 @@ class ReviewForm(ModelForm):
         model = Review
         fields = ['anonymous', 'academic_rate', 'placement_rate', 'infra_rate', 'description']
         widgets = {
-            'description': Textarea(attrs={'cols': 40, 'rows': 15})
+            'description': Textarea(attrs={'cols': 40, 'rows': 2})
         }
 
 
@@ -22,7 +22,7 @@ class UserForm(ModelForm):
         widgets = {
             'password': forms.PasswordInput()
         }
-
+ 
 
 class StudUserForm(ModelForm):
     class Meta:

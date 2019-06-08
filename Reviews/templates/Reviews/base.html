@@ -1,57 +1,68 @@
-<html>
-<head>
-	<style>
-	ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
+<!doctype html>
+<html lang="en">
+  <head>
+    
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-li {
-  float: left;
-}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Akronim|Stylish" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Lato" rel="stylesheet">
 
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
 
-/* Change the link color to #111 (black) on hover */
-li a:hover {
-  background-color: #111;
-}
-</style>
-</head>
+    <link rel="stylesheet" href="{% static 'Reviews/css/style.css'%}">
+    
+
+
+  </head>
 <body>
-<div>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
-		<div>
-			<h1><b><i><a href="{% url 'Reviews:review_list' %}">College Review System </a></i></b></h1>
-		</div>
-		<div id="navbar">
-			<ul>
-			<li><a href="{% url 'Reviews:review_list' %}">Home</a></li>
-			<li><a href="{% url 'Reviews:college_list' %}">College List</a></li>
-				<li><a href="{% url 'Reviews:autocomplete_college' %}">Search</a></li>
-				<li><a href="{% url 'Reviews:recommend' %}">Recommender</a></li>
-			{% if user.is_authenticated %}
-				<li><a href="{% url 'Reviews:logout_user' %}">LogOut</a></li>
-			{% else %}
-				<li><a href="{% url 'Reviews:login_user' %}">Login</a></li>
-				<li><a href="{% url 'Reviews:create_new_user' %}">Signup</a></li>
-			{% endif %}
-			</ul>
-		</div>
-	</nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+  <a class="navbar-brand" href="{% url 'Reviews:review_list' %}">College Recommendation System</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-	<br><br>
-	<h2>{% block title %}(no title){% endblock %}</h2>
-	{% block content %}(no content){% endblock %}
-</div>
+<div class="container">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'Reviews:review_list' %}">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'Reviews:college_list' %}">College List</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'Reviews:autocomplete_college' %}">Search</a>
+      </li>
+
+      <li ><a class="nav-link  animated infinite flash" href="{% url 'Reviews:recommend' %}">Recommender</a></li>
+
+      
+      {% if user.is_authenticated %}
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'Reviews:logout_user' %}">LogOut</a>
+      </li>
+      {% else %}
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'Reviews:login_user' %}">LogIn</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'Reviews:create_new_user' %}">Signup</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+
+
+</nav>
+      {% block title %}{%endblock %}
+    {% block body %}{%endblock %}
+
+
+
 </body>
 </html>
+
