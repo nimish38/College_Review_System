@@ -236,7 +236,11 @@ def create_new_user(request):
 	Uform = UserForm()
 	Sform = StudUserForm()
 	Iform = IndUserForm()
+	print(Uform.is_valid())
 	if request.method == "POST":
+		Uform=UserForm(data=request.POST)
+		Sform=StudUserForm(data=request.POST)
+		Iform=IndUserForm(data=request.POST)
 		if Uform.is_valid() and Sform.is_valid():
 			user = Uform.save(commit=False)
 			password = Uform.cleaned_data['password']
